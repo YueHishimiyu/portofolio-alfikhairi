@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortoFolio. | Alfi Khairi Mumtaza</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Konfigurasi Tailwind Custom -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            950: '#070A12',
+                            900: '#0B0F19',
+                            800: '#111827',
+                            700: '#1E293B',
+                        },
+                        peach: {
+                            300: '#FED7AA',
+                            400: '#FDBA74',
+                            500: '#FB923C',
+                            600: '#F59E0B',
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                        'float-delayed': 'float 4s ease-in-out 2s infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '0.7', transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles untuk Glassmorphism, Scrollbar, dan Efek Khusus */
+        body {
+            background-color: #070A12;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        /* Background Grid Pattern Halus */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(253, 186, 116, 0.35);
+            background: rgba(17, 24, 39, 0.75);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(253, 186, 116, 0.12);
+        }
+
+        /* Gradasi Teks Peach */
+        .text-gradient-peach {
+            background: linear-gradient(135deg, #FED7AA 0%, #FDBA74 50%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Kursor Efek Ketik */
+        .typing-cursor::after {
+            content: '|';
+            color: #FDBA74;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Reveal Animation saat Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070A12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FDBA74;
+        }
+    </style>
+</head>
+<body class="bg-grid-pattern relative selection:bg-peach-400 selection:text-dark-950">
+
+    <!-- Ambient Background Glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-peach-400/15 rounded-full blur-[120px] animate-pulse-glow"></div>
+        <div class="absolute top-1/3 -right-32 w-[28rem] h-[28rem] bg-indigo-500/10 rounded-full blur-[130px]"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-peach-500/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="font-display text-2xl font-bold tracking-tight text-white flex items-center gap-1 group">
+                    <span>Porto<span class="text-peach-400">Folio</span></span>
+                    <span class="w-2 h-2 rounded-full bg-peach-400 group-hover:scale-150 transition-transform"></span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-sm font-medium text-peach-400 transition-colors">Home</a>
+                    <a href="#tentang" class="nav-link text-sm font-medium text-slate-300 hover:text-peach-400 transition-colors">Tentang</a>
+                    <a href="#proyek" class="nav-link text-sm font-medium text-slate-300 hover:text-peach-400 transition-colors">Proyek</a>
+                    <a href="#kontak" class="nav-link text-sm font-medium text-slate-300 hover:text-peach-400 transition-colors">Kontak</a>
+                </nav>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden md:flex items-center gap-3">
+                    <a href="#kontak" class="px-4 py-2 rounded-xl text-sm font-semibold bg-peach-400/10 text-peach-400 border border-peach-400/30 hover:bg-peach-400 hover:text-dark-950 transition-all duration-300 flex items-center gap-2">
+                        <span>Ayo Diskusi</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-200 hover:text-peach-400 hover:border-peach-400/40 transition-colors">
+                    <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-900/95 backdrop-blur-xl border-b border-white/10 px-4 pt-2 pb-6 space-y-2">
+            <a href="#home" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-peach-400 bg-peach-400/10">Home</a>
+            <a href="#tentang" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-white/5 hover:text-peach-400">Tentang</a>
+            <a href="#proyek" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-white/5 hover:text-peach-400">Proyek</a>
+            <a href="#kontak" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-white/5 hover:text-peach-400">Kontak</a>
+            <div class="pt-2">
+                <a href="#kontak" class="mobile-link w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold bg-peach-400 text-dark-950">
+                    <span>Hubungi Saya</span>
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- ==================== HERO SECTION (HOME) ==================== -->
+        <section id="home" class="min-h-screen flex items-center pt-28 pb-16 lg:pt-32 lg:pb-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    
+                    <!-- Kolom Kiri: Teks & CTA -->
+                    <div class="lg:col-span-7 text-center lg:text-left space-y-6 order-2 lg:order-1">
+                        <!-- Status Badge -->
+                        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
+                            <span class="relative flex h-2.5 w-2.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                            </span>
+                            <span class="text-xs sm:text-sm font-medium text-slate-300">Tersedia untuk Kolaborasi & Belajar</span>
+                        </div>
+
+                        <!-- Sapaan & Nama Utama -->
+                        <div class="space-y-2">
+                            <p class="text-peach-400 font-semibold text-base sm:text-lg tracking-wide">
+                                Halo semua, saya
+                            </p>
+                            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+                                Alfi Khairi <span class="text-gradient-peach">Mumtaza</span>
+                            </h1>
+                        </div>
+
+                        <!-- Subjudul dengan Efek Ketik -->
+                        <div class="min-h-[2.25rem] flex items-center justify-center lg:justify-start">
+                            <h2 class="text-lg sm:text-2xl font-bold text-slate-200">
+                                <span id="typing-text" class="typing-cursor">Seorang Pelajar & Calon Web Designer</span>
+                            </h2>
+                        </div>
+
+                        <!-- Deskripsi -->
+                        <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                            Selamat datang di portofolio saya. Saya sedang belajar membuat website yang menarik, modern, dan interaktif dengan perhatian penuh pada estetika dan kenyamanan pengguna.
+                        </p>
+
+                        <!-- Tombol Aksi -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#proyek" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-dark-950 bg-gradient-to-r from-peach-300 via-peach-400 to-peach-500 hover:brightness-110 shadow-lg shadow-peach-400/20 hover:shadow-peach-400/40 transition-all duration-300 flex items-center justify-center gap-2 group">
+                                <span>Lihat Karya Saya</span>
+                                <i data-lucide="sparkles" class="w-4 h-4 group-hover:rotate-12 transition-transform"></i>
+                            </a>
+                            <a href="#kontak" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-semibold text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-peach-400/40 transition-all duration-300 flex items-center justify-center gap-2">
+                                <i data-lucide="mail" class="w-4 h-4 text-peach-400"></i>
+                                <span>Hubungi Saya</span>
+                            </a>
+                        </div>
+
+                        <!-- Mini Statistik / Highlight -->
+                        <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+                            <div>
+                                <p class="font-display text-2xl font-bold text-white">100<span class="text-peach-400">%</span></p>
+                                <p class="text-xs text-slate-400">Semangat Belajar</p>
+                            </div>
+                            <div>
+                                <p class="font-display text-2xl font-bold text-white">4<span class="text-peach-400">+</span></p>
+                                <p class="text-xs text-slate-400">Karya Latihan</p>
+                            </div>
+                            <div>
+                                <p class="font-display text-2xl font-bold text-white">UI<span class="text-peach-400">/</span>UX</p>
+                                <p class="text-xs text-slate-400">Fokus Desain</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Avatar Karakter Pink & Floating Badges -->
+                    <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
+                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[360px] lg:h-[360px] flex items-center justify-center">
+                            
+                            <!-- Glow Ring Belakang -->
+                            <div class="absolute inset-2 rounded-full bg-gradient-to-tr from-peach-400 via-pink-400 to-indigo-500 opacity-30 blur-2xl animate-pulse"></div>
+                            
+                            <!-- Rotating Dashed Ring -->
+                            <div class="absolute inset-0 rounded-full border-2 border-dashed border-peach-400/40 animate-spin-slow"></div>
+
+                            <!-- Lingkaran Utama Avatar (Bisa diklik untuk ganti foto) -->
+                            <div id="avatar-container" title="Klik untuk coba ganti foto profil" class="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full p-2 bg-gradient-to-b from-peach-300/60 to-white/10 shadow-2xl cursor-pointer group overflow-hidden">
+                                <div class="w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-emerald-950 via-slate-900 to-dark-950 relative flex items-center justify-center">
+                                    
+                                    <!-- Image Upload Preview (Hidden default) -->
+                                    <img id="custom-avatar-img" src="" alt="Foto Profil Alfi" class="hidden w-full h-full object-cover">
+
+                                    <!-- Ilustrasi SVG Karakter Pink Bulat Lucu (Tribute ke Jigglypuff di web asli) -->
+                                    <svg id="default-avatar-svg" viewBox="0 0 300 300" class="w-full h-full transform group-hover:scale-105 transition-transform duration-500" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <radialGradient id="bgGlow" cx="50%" cy="45%" r="55%">
+                                                <stop offset="0%" stop-color="#334155"/>
+                                                <stop offset="65%" stop-color="#1E293B"/>
+                                                <stop offset="100%" stop-color="#0F172A"/>
+                                            </radialGradient>
+                                            <radialGradient id="pinkBody" cx="40%" cy="35%" r="65%">
+                                                <stop offset="0%" stop-color="#FFE4EC"/>
+                                                <stop offset="55%" stop-color="#F9C6D3"/>
+                                                <stop offset="100%" stop-color="#E598AE"/>
+                                            </radialGradient>
+                                            <radialGradient id="eyeTeal" cx="45%" cy="45%" r="55%">
+                                                <stop offset="0%" stop-color="#38BDF8"/>
+                                                <stop offset="60%" stop-color="#0284C7"/>
+                                                <stop offset="100%" stop-color="#0C4A6E"/>
+                                            </radialGradient>
+                                        </defs>
+
+                                        <!-- Latar Belakang Lingkaran -->
+                                        <circle cx="150" cy="150" r="150" fill="url(#bgGlow)"/>
+                                        <!-- Dekorasi Bintang/Bokeh Lembut -->
+                                        <circle cx="65" cy="85" r="4" fill="#FDBA74" opacity="0.5"/>
+                                        <circle cx="240" cy="95" r="6" fill="#F9C6D3" opacity="0.4"/>
+                                        <circle cx="55" cy="210" r="5" fill="#38BDF8" opacity="0.3"/>
+
+                                        <!-- Kaki Kiri & Kanan -->
+                                        <ellipse cx="112" cy="248" rx="22" ry="12" fill="#E598AE" stroke="#9D5C70" stroke-width="2.5"/>
+                                        <ellipse cx="188" cy="248" rx="22" ry="12" fill="#E598AE" stroke="#9D5C70" stroke-width="2.5"/>
+
+                                        <!-- Telinga Kiri -->
+                                        <path d="M68 118 L56 58 L112 84 Z" fill="url(#pinkBody)" stroke="#9D5C70" stroke-width="3" stroke-linejoin="round"/>
+                                        <path d="M72 108 L65 71 L101 88 Z" fill="#332938"/>
+
+                                        <!-- Telinga Kanan -->
+                                        <path d="M232 118 L244 58 L188 84 Z" fill="url(#pinkBody)" stroke="#9D5C70" stroke-width="3" stroke-linejoin="round"/>
+                                        <path d="M228 108 L235 71 L199 88 Z" fill="#332938"/>
+
+                                        <!-- Badan Bulat Utama -->
+                                        <circle cx="150" cy="162" r="88" fill="url(#pinkBody)" stroke="#9D5C70" stroke-width="3"/>
+
+                                        <!-- Jambul Keriting di Dahi -->
+                                        <path d="M136 82 C132 62, 168 62, 170 84 C172 102, 146 108, 144 94 C143 87, 154 84, 156 90" fill="url(#pinkBody)" stroke="#9D5C70" stroke-width="3" stroke-linecap="round"/>
+
+                                        <!-- Mata Kiri Besar -->
+                                        <circle cx="114" cy="158" r="27" fill="#FFFFFF" stroke="#9D5C70" stroke-width="2.5"/>
+                                        <circle cx="116" cy="158" r="20" fill="url(#eyeTeal)"/>
+                                        <circle cx="112" cy="151" r="7.5" fill="#FFFFFF"/>
+                                        <circle cx="123" cy="166" r="3" fill="#FFFFFF" opacity="0.8"/>
+
+                                        <!-- Mata Kanan Besar -->
+                                        <circle cx="186" cy="158" r="27" fill="#FFFFFF" stroke="#9D5C70" stroke-width="2.5"/>
+                                        <circle cx="184" cy="158" r="20" fill="url(#eyeTeal)"/>
+                                        <circle cx="180" cy="151" r="7.5" fill="#FFFFFF"/>
+                                        <circle cx="191" cy="166" r="3" fill="#FFFFFF" opacity="0.8"/>
+
+                                        <!-- Blush Pipi -->
+                                        <ellipse cx="86" cy="184" rx="10" ry="5" fill="#F472B6" opacity="0.45"/>
+                                        <ellipse cx="214" cy="184" rx="10" ry="5" fill="#F472B6" opacity="0.45"/>
+
+                                        <!-- Mulut Kecil Manis -->
+                                        <path d="M141 189 Q150 198 159 189" fill="none" stroke="#9D5C70" stroke-width="3" stroke-linecap="round"/>
+
+                                        <!-- Tangan Kiri & Kanan -->
+                                        <path d="M74 176 Q56 188 78 202" fill="url(#pinkBody)" stroke="#9D5C70" stroke-width="3" stroke-linecap="round"/>
+                                        <path d="M226 176 Q244 188 222 202" fill="url(#pinkBody)" stroke="#9D5C70" stroke-width="3" stroke-linecap="round"/>
+                                    </svg>
+
+                                    <!-- Overlay Hover Ganti Foto -->
+                                    <div class="absolute inset-0 bg-dark-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center p-4">
+                                        <i data-lucide="camera" class="w-7 h-7 text-peach-400 mb-1.5"></i>
+                                        <span class="text-xs font-semibold text-white">Ganti Foto Profil</span>
+                                        <span class="text-[10px] text-slate-300 mt-0.5">Klik untuk preview fotomu</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="file" id="avatar-upload" accept="image/*" class="hidden">
+
+                            <!-- Floating Badge 1: HTML & CSS -->
+                            <div class="animate-float absolute -top-2 -left-2 sm:top-4 sm:-left-6 glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2.5 shadow-xl">
+                                <div class="w-8 h-8 rounded-lg bg-peach-400/20 flex items-center justify-center text-peach-400">
+                                    <i data-lucide="code-2" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-white">HTML & CSS</p>
+                                    <p class="text-[10px] text-slate-400">Clean Code</p>
+                                </div>
+                            </div>
+
+                            <!-- Floating Badge 2: UI/UX Design -->
+                            <div class="animate-float-delayed absolute bottom-6 -left-3 sm:bottom-8 sm:-left-8 glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2.5 shadow-xl">
+                                <div class="w-8 h-8 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400">
+                                    <i data-lucide="palette" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-white">UI/UX Design</p>
+                                    <p class="text-[10px] text-slate-400">Modern Look</p>
+                                </div>
+                            </div>
+
+                            <!-- Floating Badge 3: JavaScript -->
+                            <div class="animate-float absolute top-1/2 -right-3 sm:-right-7 glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2.5 shadow-xl">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400">
+                                    <i data-lucide="zap" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-white">JavaScript</p>
+                                    <p class="text-[10px] text-slate-400">Interaktif</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TENTANG SAYA SECTION ==================== -->
+        <section id="tentang" class="py-20 lg:py-28 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                    <span class="text-peach-400 font-semibold text-sm tracking-widest uppercase">Tentang Saya</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">
+                        Mengenal Perjalanan Belajar <span class="text-peach-400">Web Design</span> Saya
+                    </h2>
+                    <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                        Setiap baris kode adalah langkah baru untuk mengubah ide kreatif menjadi tampilan web yang nyata.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Kartu Cerita / Bio -->
+                    <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 space-y-6 reveal">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-peach-400/10 text-peach-400 text-xs font-semibold">
+                            <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                            <span>Pelajar & Enthusiast</span>
+                        </div>
+                        
+                        <h3 class="font-display text-2xl font-bold text-white leading-snug">
+                            Halo! Saya Alfi Khairi Mumtaza, seorang pelajar yang jatuh cinta pada dunia desain antarmuka web.
+                        </h3>
+                        
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                            Ketertarikan saya bermula dari rasa penasaran bagaimana sebuah halaman website bisa terlihat begitu rapi, responsif, dan menyenangkan saat digunakan. Saat ini saya fokus mengasah kemampuan di bidang <span class="text-peach-300 font-medium">Front-End Development</span> dan <span class="text-peach-300 font-medium">UI/UX Design</span>.
+                        </p>
+                        
+                        <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                            Tujuan saya adalah terus bereksperimen membangun proyek-proyek web yang bersih, cepat, serta memiliki karakter visual yang kuat.
+                        </p>
+
+                        <!-- Highlight Cards Kecil -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5 flex items-start gap-3">
+                                <div class="p-2 rounded-xl bg-peach-400/15 text-peach-400 shrink-0">
+                                    <i data-lucide="layout" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Desain Responsif</h4>
+                                    <p class="text-xs text-slate-400 mt-1">Nyaman diakses dari HP, tablet, maupun laptop.</p>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5 flex items-start gap-3">
+                                <div class="p-2 rounded-xl bg-peach-400/15 text-peach-400 shrink-0">
+                                    <i data-lucide="wand-2" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Estetika Modern</h4>
+                                    <p class="text-xs text-slate-400 mt-1">Perpaduan warna, tipografi, dan animasi halus.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kartu Keahlian / Skills -->
+                    <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 space-y-6 reveal">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-display text-xl font-bold text-white">Keahlian & Teknologi</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 mt-0.5">Tools yang sedang saya pelajari dan gunakan</p>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-peach-400/10 border border-peach-400/20 flex items-center justify-center text-peach-400">
+                                <i data-lucide="cpu" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+
+                        <!-- Daftar Progress Bar Skill -->
+                        <div class="space-y-5">
+                            <!-- Skill 1 -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span class="font-semibold text-slate-200 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-orange-400"></span> HTML5 & Struktur Semantik
+                                    </span>
+                                    <span class="text-peach-400 font-bold">85%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-dark-950 rounded-full overflow-hidden border border-white/5">
+                                    <div class="h-full bg-gradient-to-r from-peach-500 to-peach-300 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 2 -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span class="font-semibold text-slate-200 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-sky-400"></span> CSS3 & Tailwind CSS
+                                    </span>
+                                    <span class="text-peach-400 font-bold">80%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-dark-950 rounded-full overflow-hidden border border-white/5">
+                                    <div class="h-full bg-gradient-to-r from-peach-500 to-peach-300 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 3 -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span class="font-semibold text-slate-200 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-pink-400"></span> Desain UI/UX (Figma)
+                                    </span>
+                                    <span class="text-peach-400 font-bold">75%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-dark-950 rounded-full overflow-hidden border border-white/5">
+                                    <div class="h-full bg-gradient-to-r from-peach-500 to-peach-300 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 4 -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span class="font-semibold text-slate-200 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Responsive Web Design
+                                    </span>
+                                    <span class="text-peach-400 font-bold">80%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-dark-950 rounded-full overflow-hidden border border-white/5">
+                                    <div class="h-full bg-gradient-to-r from-peach-500 to-peach-300 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 5 -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span class="font-semibold text-slate-200 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-yellow-400"></span> JavaScript Dasar & Interaktivitas
+                                    </span>
+                                    <span class="text-peach-400 font-bold">65%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-dark-950 rounded-full overflow-hidden border border-white/5">
+                                    <div class="h-full bg-gradient-to-r from-peach-500 to-peach-300 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tag Badges -->
+                        <div class="pt-3 border-t border-white/10 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-lg bg-white/5 text-xs font-medium text-slate-300 border border-white/5">Git & GitHub</span>
+                            <span class="px-3 py-1 rounded-lg bg-white/5 text-xs font-medium text-slate-300 border border-white/5">VS Code</span>
+                            <span class="px-3 py-1 rounded-lg bg-white/5 text-xs font-medium text-slate-300 border border-white/5">Wireframing</span>
+                            <span class="px-3 py-1 rounded-lg bg-white/5 text-xs font-medium text-slate-300 border border-white/5">Color Theory</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PROYEK SECTION ==================== -->
+        <section id="proyek" class="py-20 lg:py-28 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+                    <span class="text-peach-400 font-semibold text-sm tracking-widest uppercase">Portofolio Karya</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">
+                        Proyek & Eksplorasi <span class="text-peach-400">Terbaru</span>
+                    </h2>
+                    <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                        Kumpulan latihan desain dan pengembangan website yang telah saya kerjakan.
+                    </p>
+                </div>
+
+                <!-- Filter Kategori Interaktif -->
+                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 reveal" id="project-filters">
+                    <button data-filter="all" class="filter-btn active px-5 py-2.5 rounded-xl text-sm font-semibold bg-peach-400 text-dark-950 shadow-lg shadow-peach-400/20 transition-all">
+                        Semua
+                    </button>
+                    <button data-filter="web-design" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-slate-300 hover:text-white border border-white/10 transition-all">
+                        Web Design
+                    </button>
+                    <button data-filter="landing-page" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-slate-300 hover:text-white border border-white/10 transition-all">
+                        Landing Page
+                    </button>
+                    <button data-filter="mini-app" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-slate-300 hover:text-white border border-white/10 transition-all">
+                        Mini App
+                    </button>
+                </div>
+
+                <!-- Grid Kartu Proyek -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8" id="projects-grid">
+                    
+                    <!-- Proyek 1 -->
+                    <article class="project-card glass-card rounded-3xl overflow-hidden flex flex-col reveal" data-category="web-design">
+                        <!-- Thumbnail Visual -->
+                        <div class="h-52 relative overflow-hidden bg-gradient-to-br from-slate-900 via-dark-800 to-peach-500/20 p-6 flex items-center justify-center border-b border-white/5 group">
+                            <div class="w-full h-full rounded-xl bg-dark-950/90 border border-white/10 p-4 shadow-2xl transform group-hover:scale-105 transition-transform duration-500 flex flex-col justify-between">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex gap-1.5">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                    </div>
+                                    <span class="text-[10px] text-slate-500 font-mono">portofolio.alfikhairimumtaza.com</span>
+                                </div>
+                                <div class="flex items-center justify-between my-auto px-2">
+                                    <div class="space-y-1.5">
+                                        <div class="h-2 w-16 bg-peach-400/50 rounded"></div>
+                                        <div class="h-3.5 w-32 bg-white rounded"></div>
+                                        <div class="h-2 w-24 bg-slate-600 rounded"></div>
+                                    </div>
+                                    <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-400 to-peach-300 opacity-90"></div>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-dark-950/80 text-peach-400 border border-peach-400/30 backdrop-blur-md">
+                                Web Design
+                            </span>
+                        </div>
+                        <!-- Konten -->
+                        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
+                            <div class="space-y-3">
+                                <h3 class="font-display text-xl font-bold text-white">Website Portofolio Pribadi</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    Website personal dengan konsep dark-mode modern, efek glassmorphism, dan animasi interaktif untuk menampilkan profil serta karya belajar.
+                                </p>
+                                <div class="flex flex-wrap gap-2 pt-1">
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">HTML5</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">Tailwind CSS</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">JavaScript</span>
+                                </div>
+                            </div>
+                            <button onclick="openProjectModal(0)" class="w-full py-3 px-4 rounded-xl bg-white/5 hover:bg-peach-400 text-white hover:text-dark-950 font-semibold text-sm border border-white/10 hover:border-peach-400 transition-all flex items-center justify-center gap-2">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Proyek 2 -->
+                    <article class="project-card glass-card rounded-3xl overflow-hidden flex flex-col reveal" data-category="landing-page">
+                        <!-- Thumbnail Visual -->
+                        <div class="h-52 relative overflow-hidden bg-gradient-to-br from-amber-950/60 via-dark-800 to-orange-500/20 p-6 flex items-center justify-center border-b border-white/5 group">
+                            <div class="w-full h-full rounded-xl bg-[#1C140D] border border-amber-500/20 p-4 shadow-2xl transform group-hover:scale-105 transition-transform duration-500 flex flex-col justify-between">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-amber-300">Kopi Senja.</span>
+                                    <div class="flex gap-2">
+                                        <span class="w-8 h-1.5 bg-amber-200/30 rounded"></span>
+                                        <span class="w-8 h-1.5 bg-amber-200/30 rounded"></span>
+                                    </div>
+                                </div>
+                                <div class="text-center space-y-2 my-auto">
+                                    <div class="w-10 h-10 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400">
+                                        <i data-lucide="coffee" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="h-3 w-36 mx-auto bg-amber-100 rounded"></div>
+                                    <div class="h-5 w-20 mx-auto bg-amber-500 rounded-md"></div>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-dark-950/80 text-peach-400 border border-peach-400/30 backdrop-blur-md">
+                                Landing Page
+                            </span>
+                        </div>
+                        <!-- Konten -->
+                        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
+                            <div class="space-y-3">
+                                <h3 class="font-display text-xl font-bold text-white">Desain Landing Page Kafe</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    Halaman promosi kedai kopi lokal dengan nuansa hangat, daftar menu interaktif, galeri suasana, serta tombol reservasi meja cepat.
+                                </p>
+                                <div class="flex flex-wrap gap-2 pt-1">
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">UI Design</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">CSS Grid</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">Responsive</span>
+                                </div>
+                            </div>
+                            <button onclick="openProjectModal(1)" class="w-full py-3 px-4 rounded-xl bg-white/5 hover:bg-peach-400 text-white hover:text-dark-950 font-semibold text-sm border border-white/10 hover:border-peach-400 transition-all flex items-center justify-center gap-2">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Proyek 3 -->
+                    <article class="project-card glass-card rounded-3xl overflow-hidden flex flex-col reveal" data-category="mini-app">
+                        <!-- Thumbnail Visual -->
+                        <div class="h-52 relative overflow-hidden bg-gradient-to-br from-indigo-950/60 via-dark-800 to-cyan-500/20 p-6 flex items-center justify-center border-b border-white/5 group">
+                            <div class="w-full h-full rounded-xl bg-slate-900 border border-indigo-400/20 p-4 shadow-2xl transform group-hover:scale-105 transition-transform duration-500 flex flex-col justify-between">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-indigo-300">Task & Calc Studio</span>
+                                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px]">JS App</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 my-auto">
+                                    <div class="p-2.5 rounded-lg bg-white/5 space-y-1.5">
+                                        <div class="h-2 w-full bg-indigo-400/50 rounded"></div>
+                                        <div class="h-2 w-3/4 bg-slate-600 rounded"></div>
+                                        <div class="h-2 w-5/6 bg-slate-600 rounded"></div>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-white/5 grid grid-cols-3 gap-1">
+                                        <div class="h-3 bg-slate-700 rounded"></div>
+                                        <div class="h-3 bg-slate-700 rounded"></div>
+                                        <div class="h-3 bg-peach-400/70 rounded"></div>
+                                        <div class="h-3 bg-slate-700 rounded"></div>
+                                        <div class="h-3 bg-slate-700 rounded"></div>
+                                        <div class="h-3 bg-peach-400/70 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-dark-950/80 text-peach-400 border border-peach-400/30 backdrop-blur-md">
+                                Mini App
+                            </span>
+                        </div>
+                        <!-- Konten -->
+                        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
+                            <div class="space-y-3">
+                                <h3 class="font-display text-xl font-bold text-white">Kalkulator & To-Do List Interaktif</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    Aplikasi produktivitas pelajar berbasis browser untuk mencatat tugas harian dengan penyimpanan lokal dan kalkulator modern.
+                                </p>
+                                <div class="flex flex-wrap gap-2 pt-1">
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">JavaScript DOM</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">LocalStorage</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">HTML/CSS</span>
+                                </div>
+                            </div>
+                            <button onclick="openProjectModal(2)" class="w-full py-3 px-4 rounded-xl bg-white/5 hover:bg-peach-400 text-white hover:text-dark-950 font-semibold text-sm border border-white/10 hover:border-peach-400 transition-all flex items-center justify-center gap-2">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Proyek 4 -->
+                    <article class="project-card glass-card rounded-3xl overflow-hidden flex flex-col reveal" data-category="web-design">
+                        <!-- Thumbnail Visual -->
+                        <div class="h-52 relative overflow-hidden bg-gradient-to-br from-emerald-950/60 via-dark-800 to-teal-500/20 p-6 flex items-center justify-center border-b border-white/5 group">
+                            <div class="w-full h-full rounded-xl bg-slate-900 border border-emerald-400/20 p-4 shadow-2xl transform group-hover:scale-105 transition-transform duration-500 flex flex-col justify-between">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-emerald-300">EduPortal UI</span>
+                                    <span class="text-[10px] text-slate-400">Figma Prototype</span>
+                                </div>
+                                <div class="space-y-2 my-auto">
+                                    <div class="flex gap-2">
+                                        <div class="h-12 flex-1 rounded-lg bg-emerald-500/20 border border-emerald-400/30 p-2">
+                                            <div class="h-2 w-10 bg-emerald-300 rounded"></div>
+                                        </div>
+                                        <div class="h-12 flex-1 rounded-lg bg-white/5 p-2">
+                                            <div class="h-2 w-10 bg-slate-400 rounded"></div>
+                                        </div>
+                                    </div>
+                                    <div class="h-8 w-full rounded-lg bg-white/5"></div>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-dark-950/80 text-peach-400 border border-peach-400/30 backdrop-blur-md">
+                                Web Design
+                            </span>
+                        </div>
+                        <!-- Konten -->
+                        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
+                            <div class="space-y-3">
+                                <h3 class="font-display text-xl font-bold text-white">Redesign UI Aplikasi Sekolah</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    Studi kasus perancangan ulang tampilan dashboard jadwal pelajaran, presensi, dan pengumuman sekolah agar lebih ramah bagi siswa.
+                                </p>
+                                <div class="flex flex-wrap gap-2 pt-1">
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">Figma</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">UI/UX Study</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-peach-400/10 text-peach-300 text-xs font-medium">Prototyping</span>
+                                </div>
+                            </div>
+                            <button onclick="openProjectModal(3)" class="w-full py-3 px-4 rounded-xl bg-white/5 hover:bg-peach-400 text-white hover:text-dark-950 font-semibold text-sm border border-white/10 hover:border-peach-400 transition-all flex items-center justify-center gap-2">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== KONTAK SECTION ==================== -->
+        <section id="kontak" class="py-20 lg:py-28 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                    <span class="text-peach-400 font-semibold text-sm tracking-widest uppercase">Hubungi Saya</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">
+                        Mari Berkolaborasi & <span class="text-peach-400">Terhubung</span>
+                    </h2>
+                    <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                        Punya saran desain, ingin berdiskusi seputar web development, atau butuh bantuan membuat landing page sederhana? Jangan ragu menyapa!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Kolom Kiri: Info Kontak -->
+                    <div class="lg:col-span-5 space-y-4 reveal">
+                        <!-- Card Email -->
+                        <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-peach-400/15 border border-peach-400/30 flex items-center justify-center text-peach-400 shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="text-xs text-slate-400 font-medium">Email</p>
+                                <p class="text-sm sm:text-base font-bold text-white truncate">alfikhairimumtaza@gmail.com</p>
+                            </div>
+                            <button onclick="copyEmail()" title="Salin Email" class="p-2 rounded-lg bg-white/5 hover:bg-peach-400/20 text-slate-300 hover:text-peach-400 transition-colors">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card GitHub -->
+                        <a href="https://github.com/YueHishimiyu" target="_blank" rel="noopener noreferrer" class="glass-card p-5 rounded-2xl flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 group-hover:border-peach-400/40 flex items-center justify-center text-white group-hover:text-peach-400 transition-colors shrink-0">
+                                <i data-lucide="github" class="w-6 h-6"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="text-xs text-slate-400 font-medium">GitHub</p>
+                                <p class="text-sm sm:text-base font-bold text-white group-hover:text-peach-400 transition-colors truncate">github.com/YueHishimiyu</p>
+                            </div>
+                            <i data-lucide="external-link" class="w-4 h-4 text-slate-500 group-hover:text-peach-400"></i>
+                        </a>
+
+                        <!-- Card Instagram / Sosial Media -->
+                        <a href="#kontak" onclick="showToast('Silakan kirim pesan melalui form di samping!'); return false;" class="glass-card p-5 rounded-2xl flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/15 border border-pink-500/30 flex items-center justify-center text-pink-400 shrink-0">
+                                <i data-lucide="instagram" class="w-6 h-6"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="text-xs text-slate-400 font-medium">Instagram</p>
+                                <p class="text-sm sm:text-base font-bold text-white group-hover:text-peach-400 transition-colors truncate">@alfikhairimumtaza</p>
+                            </div>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-peach-400"></i>
+                        </a>
+
+                        <!-- Quote Box -->
+                        <div class="p-6 rounded-2xl bg-gradient-to-br from-peach-400/10 to-transparent border border-peach-400/20 mt-4">
+                            <p class="text-sm italic text-slate-300 leading-relaxed">
+                                "Desain yang baik bukan hanya tentang bagaimana tampilannya terlihat, tetapi bagaimana ia terasa mudah dan menyenangkan saat digunakan."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Formulir Pesan Interaktif -->
+                    <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 reveal">
+                        <form id="contact-form" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="space-y-2">
+                                    <label for="sender-name" class="block text-sm font-medium text-slate-300">Nama Lengkap</label>
+                                    <input type="text" id="sender-name" required placeholder="Masukkan nama kamu" class="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-peach-400 focus:ring-1 focus:ring-peach-400 transition-all text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label for="sender-email" class="block text-sm font-medium text-slate-300">Alamat Email</label>
+                                    <input type="email" id="sender-email" required placeholder="nama@email.com" class="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-peach-400 focus:ring-1 focus:ring-peach-400 transition-all text-sm">
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="sender-subject" class="block text-sm font-medium text-slate-300">Subjek</label>
+                                <input type="text" id="sender-subject" required placeholder="Misal: Kolaborasi Proyek / Sapaan" class="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-peach-400 focus:ring-1 focus:ring-peach-400 transition-all text-sm">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="sender-message" class="block text-sm font-medium text-slate-300">Pesan</label>
+                                <textarea id="sender-message" rows="4" required placeholder="Tulis pesan atau masukan kamu di sini..." class="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-peach-400 focus:ring-1 focus:ring-peach-400 transition-all text-sm resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl font-bold text-dark-950 bg-gradient-to-r from-peach-300 via-peach-400 to-peach-500 hover:brightness-110 shadow-lg shadow-peach-400/20 transition-all flex items-center justify-center gap-2">
+                                <span>Kirim Pesan Sekarang</span>
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="border-t border-white/10 bg-dark-950/80 backdrop-blur-md relative z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-display text-lg font-bold text-white">Porto<span class="text-peach-400">Folio</span>.</span>
+                <span class="text-slate-600">|</span>
+                <p class="text-xs sm:text-sm text-slate-400">© 2026 Alfi Khairi Mumtaza</p>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/YueHishimiyu" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-peach-400 hover:bg-white/10 transition-colors">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                <a href="#home" aria-label="Kembali ke atas" class="px-3 py-1.5 rounded-lg bg-white/5 text-xs font-medium text-slate-300 hover:text-peach-400 hover:bg-white/10 transition-colors flex items-center gap-1.5">
+                    <span>Ke Atas</span>
+                    <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL DETAIL PROYEK ==================== -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-dark-950/80 backdrop-blur-md">
+        <div class="glass-card bg-dark-900 border border-white/15 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl transform transition-all">
+            <button onclick="closeProjectModal()" aria-label="Tutup Modal" class="absolute top-5 right-5 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <span id="modal-category" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-peach-400/15 text-peach-400 border border-peach-400/30 mb-3">
+                Kategori
+            </span>
+            <h3 id="modal-title" class="font-display text-2xl font-bold text-white mb-3">Judul Proyek</h3>
+            <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed mb-5">Deskripsi lengkap proyek.</p>
+
+            <div class="space-y-3 mb-6">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Fitur & Pembelajaran Utama:</h4>
+                <ul id="modal-features" class="space-y-2 text-sm text-slate-300">
+                    <!-- Diisi via JS -->
+                </ul>
+            </div>
+
+            <div id="modal-tags" class="flex flex-wrap gap-2 mb-6">
+                <!-- Diisi via JS -->
+            </div>
+
+            <div class="flex gap-3">
+                <a href="https://github.com/YueHishimiyu" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl font-bold text-dark-950 bg-peach-400 hover:bg-peach-300 transition-colors text-sm flex items-center justify-center gap-2">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span>Lihat di GitHub</span>
+                </a>
+                <button onclick="closeProjectModal()" class="py-3 px-5 rounded-xl font-semibold text-slate-300 bg-white/5 hover:bg-white/10 border border-white/10 text-sm transition-colors">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div id="toast-box" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card bg-dark-900/95 border border-peach-400/40 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+            </div>
+            <p id="toast-message" class="text-sm font-medium text-white">Notifikasi berhasil!</p>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT INTERAKTIVITAS ==================== -->
+    <script>
+        // 1. Inisialisasi Lucide Icons
+        lucide.createIcons();
+
+        // 2. Efek Navbar Blur & Border saat Scroll + Active Link Highlight
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                navbar.classList.add('bg-dark-950/80', 'backdrop-blur-xl', 'border-white/10', 'shadow-lg');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-dark-950/80', 'backdrop-blur-xl', 'border-white/10', 'shadow-lg');
+                navbar.classList.add('border-transparent');
+            }
+
+            // Update Active Nav Link
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 140;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-peach-400');
+                link.classList.add('text-slate-300');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-peach-400');
+                    link.classList.remove('text-slate-300');
+                }
+            });
+        });
+
+        // 3. Mobile Hamburger Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 4. Typing Animation di Hero Section
+        const roles = [
+            "Seorang Pelajar & Calon Web Designer",
+            "Penggemar Desain UI/UX Modern",
+            "Pembelajar Front-End Web Development"
+        ];
+        let roleIndex = 0;
+        let charIndex = roles[0].length;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeEffect() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 40 : 75;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                speed = 2200; // Jeda setelah selesai mengetik
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                speed = 400;
+            }
+
+            setTimeout(typeEffect, speed);
+        }
+        setTimeout(typeEffect, 2000);
+
+        // 5. Fitur Interaktif Ganti Preview Foto Avatar
+        const avatarContainer = document.getElementById('avatar-container');
+        const avatarUpload = document.getElementById('avatar-upload');
+        const customAvatarImg = document.getElementById('custom-avatar-img');
+        const defaultAvatarSvg = document.getElementById('default-avatar-svg');
+
+        avatarContainer.addEventListener('click', () => {
+            avatarUpload.click();
+        });
+
+        avatarUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    customAvatarImg.src = event.target.result;
+                    customAvatarImg.classList.remove('hidden');
+                    defaultAvatarSvg.classList.add('hidden');
+                    showToast('Preview foto profil berhasil diperbarui!');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 6. Filter Kategori Proyek
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset style tombol
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-peach-400', 'text-dark-950', 'shadow-lg', 'shadow-peach-400/20');
+                    b.classList.add('bg-white/5', 'text-slate-300', 'border', 'border-white/10');
+                });
+                // Aktifkan tombol diklik
+                btn.classList.add('bg-peach-400', 'text-dark-950', 'shadow-lg', 'shadow-peach-400/20');
+                btn.classList.remove('bg-white/5', 'text-slate-300', 'border', 'border-white/10');
+
+                const filter = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 250);
+                    }
+                });
+            });
+        });
+
+        // 7. Data & Logika Modal Detail Proyek
+        const projectsData = [
+            {
+                category: "Web Design",
+                title: "Website Portofolio Pribadi",
+                desc: "Proyek pengembangan website portofolio pribadi untuk memperkenalkan profil, keterampilan, dan hasil latihan desain web. Dibangun dengan pendekatan mobile-first sehingga rapi di berbagai ukuran layar.",
+                features: [
+                    "Tata letak responsif dengan Tailwind CSS",
+                    "Efek glassmorphism & palet warna dark-peach yang konsisten",
+                    "Filter proyek interaktif dan animasi scroll halus"
+                ],
+                tags: ["HTML5", "Tailwind CSS", "JavaScript", "GitHub Pages"]
+            },
+            {
+                category: "Landing Page",
+                title: "Desain Landing Page Kafe",
+                desc: "Konsep halaman depan untuk kedai kopi lokal 'Kopi Senja' yang berfokus pada visual menggugah selera, tipografi hangat, serta kemudahan pengunjung melihat daftar menu andalan.",
+                features: [
+                    "Hero banner dengan hierarki tipografi yang jelas",
+                    "Kartu menu minuman & makanan dengan kategori",
+                    "Integrasi bagian lokasi dan jam operasional"
+                ],
+                tags: ["UI Design", "HTML5", "CSS Grid", "Responsive Design"]
+            },
+            {
+                category: "Mini App",
+                title: "Kalkulator & To-Do List Interaktif",
+                desc: "Mini aplikasi web untuk melatih logika pemrograman JavaScript dasar, manipulasi DOM, dan penyimpanan data sementara di browser menggunakan LocalStorage.",
+                features: [
+                    "Tambah, tandai selesai, dan hapus daftar tugas belajar",
+                    "Kalkulator aritmatika dengan tampilan tombol modern",
+                    "Data tugas tetap tersimpan meski halaman di-refresh"
+                ],
+                tags: ["JavaScript ES6", "DOM Manipulation", "LocalStorage", "CSS3"]
+            },
+            {
+                category: "Web Design",
+                title: "Redesign UI Aplikasi Sekolah",
+                desc: "Eksplorasi desain ulang antarmuka sistem informasi siswa agar informasi jadwal, tugas, dan pengumuman akademik lebih mudah dibaca dan modern.",
+                features: [
+                    "Riset struktur navigasi agar lebih ringkas bagi pelajar",
+                    "Sistem komponen kartu jadwal dan status tugas",
+                    "Prototipe interaktif siap uji coba di Figma"
+                ],
+                tags: ["Figma", "UI/UX Design", "Wireframing", "Prototyping"]
+            }
+        ];
+
+        const projectModal = document.getElementById('project-modal');
+
+        function openProjectModal(index) {
+            const data = projectsData[index];
+            document.getElementById('modal-category').textContent = data.category;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-desc').textContent = data.desc;
+
+            const featuresList = document.getElementById('modal-features');
+            featuresList.innerHTML = data.features.map(f => `
+                <li class="flex items-start gap-2">
+                    <span class="text-peach-400 mt-0.5">•</span>
+                    <span>${f}</span>
+                </li>
+            `).join('');
+
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = data.tags.map(t => `
+                <span class="px-3 py-1 rounded-lg bg-white/5 text-peach-300 text-xs font-medium border border-white/10">${t}</span>
+            `).join('');
+
+            projectModal.classList.remove('hidden');
+            projectModal.classList.add('flex');
+        }
+
+        function closeProjectModal() {
+            projectModal.classList.add('hidden');
+            projectModal.classList.remove('flex');
+        }
+
+        // Tutup modal saat klik area luar
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) closeProjectModal();
+        });
+
+        // 8. Form Kontak & Toast Notification
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('sender-name').value;
+            showToast(`Terima kasih ${name}! Pesan kamu telah terkirim.`);
+            contactForm.reset();
+        });
+
+        function copyEmail() {
+            const emailText = "alfikhairimumtaza@gmail.com";
+            const tempInput = document.createElement("input");
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            showToast("Alamat email berhasil disalin!");
+        }
+
+        let toastTimeout;
+        function showToast(message) {
+            const toastBox = document.getElementById('toast-box');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+
+            toastBox.classList.remove('translate-y-24', 'opacity-0');
+            toastBox.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toastBox.classList.add('translate-y-24', 'opacity-0');
+                toastBox.classList.remove('translate-y-0', 'opacity-100');
+            }, 3500);
+        }
+
+        // 9. Scroll Reveal Animation dengan IntersectionObserver
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
